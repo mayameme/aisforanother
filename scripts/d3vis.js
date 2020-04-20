@@ -99,7 +99,7 @@ export default function define(runtime, observer) {
     }
 
     function mouseHover(d) {
-      if(d.class = "link"){
+      if(d.class == "link"){
         document.body.style.cursor = 'pointer';
       }
       d3.select(this).style("stroke-width", 6);
@@ -127,9 +127,10 @@ export default function define(runtime, observer) {
     }
 
     function handleMouseClick(d, i) {
+      console.log(d.class);
       if (d.class == "tag") {
         d3.select(this).attr("style", "fill: blue; stroke: black");
-      } else {
+      } else if (d.class == "link"){
         window.open(d.link)
       }
       node.attr("class");
