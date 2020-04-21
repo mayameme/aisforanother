@@ -54,9 +54,11 @@ export default function define(runtime, observer) {
       .call(drag(simulation))
       .on("mouseover", mouseHover)
       .on("mouseout", mouseOut)
-      .on("mousemove", function(){return tooltip.style("top",
-    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");});
+      .on("mousemove", mouseMove);
 
+
+    function mouseMove(d) {return tooltip.style("top",
+      (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");}
     // node.append("title")
     //   .text(d => d.name);
     var tooltip = d3.select("body")
@@ -161,8 +163,8 @@ export default function define(runtime, observer) {
       d3.event.stopPropagation();
       let x = d3.touches(this);
       console.log(d);
-      console.log(x);
-      tooltip.style("top",d.x+"px").style("left",d.y+"px");
+      console.log(event.touches[0].clientX);
+      tooltip.style("top",d.y + "px").style("left",d.x + "px");
       tooltip.text(d.name);
       tooltip.style("visibility", "visible");
       mouseOut(d);
