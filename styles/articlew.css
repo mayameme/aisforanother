@@ -138,6 +138,15 @@ img {
   width:20%;
   height:auto;
 }
+
+.bekuimg{
+  float: right;
+  padding-left: 1rem;
+  width:20%;
+  height:auto;
+  padding-right: 3rem;
+}
+
 .hivostext{
   padding: 1rem;
 }
@@ -175,7 +184,7 @@ img {
     display: flex;
     flex-direction: column;
   }
-  .hivosimg{
+  .hivosimg .bekuimg{
     width:40%;
   }
   .hivostext{
