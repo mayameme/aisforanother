@@ -14,10 +14,17 @@ export default function define(runtime, observer) {
       .force("center", d3.forceCenter(width / 2, height / 2))
       .force("collide", d3.forceCollide(30));
 
+    // var tip = d3.tip()
+    //   .attr('class', 'd3-tip')
+    //   .offset([-10, 0])
+    //   .html(function (d) {
+    //     return "<strong>Frequency:</strong> <span style='color:red'>" + d.id + "</span>";
+    //   })
+
     const svg = d3.create("svg")
       .attr("viewBox", [0, 0, width, height])
-      .attr("class", "box");
-
+      .attr("class", "box")
+    // .svg.call(tip);
 
     // const bg = svg.append("rect")
     //   .attr("width", "100%")
@@ -46,11 +53,19 @@ export default function define(runtime, observer) {
       .on("click", handleMouseClick)
       .call(drag(simulation))
       .on("mouseover", mouseHover)
-      .on("mouseout", mouseOut);
+      .on("mouseout", mouseOut)
+      .on("mousemove", function(){return tooltip.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");});
 
-    node.append("title")
-      .text(d => d.name);
-
+    // node.append("title")
+    //   .text(d => d.name);
+    var tooltip = d3.select("body")
+    .append("div")
+    .attr("class", "up-arrow")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("a simple tooltip");
 
     svg.call(d3.zoom()
       .extent([[0, 0], [width, height]])
@@ -99,7 +114,10 @@ export default function define(runtime, observer) {
     }
 
     function mouseHover(d) {
-      if(d.class == "link"){
+      tooltip.text(d.name);
+      tooltip.style("visibility", "visible");
+      // tip.show(d);
+      if (d.class == "link") {
         document.body.style.cursor = 'pointer';
       }
       d3.select(this).style("stroke-width", 6);
@@ -119,18 +137,20 @@ export default function define(runtime, observer) {
       //}
     }
 
-    function mouseOut (d) {
-        document.body.style.cursor = 'auto';
-        svg.selectAll('circle').style('opacity', 0.6);
-        svg.selectAll('circle').style('stroke', 'black');
-        d3.select(this).style("stroke-width", 1);
+    function mouseOut(d) {
+      tooltip.style("visibility", "hidden");
+      // tip.hide(d);
+      document.body.style.cursor = 'auto';
+      svg.selectAll('circle').style('opacity', 0.6);
+      svg.selectAll('circle').style('stroke', 'black');
+      d3.select(this).style("stroke-width", 1);
     }
 
     function handleMouseClick(d, i) {
       console.log(d.class);
       if (d.class == "tag") {
         d3.select(this).attr("style", "fill: blue; stroke: black");
-      } else if (d.class == "link"){
+      } else if (d.class == "link") {
         window.open(d.link)
       }
       node.attr("class");
@@ -140,10 +160,14 @@ export default function define(runtime, observer) {
       d3.event.preventDefault();
       d3.event.stopPropagation();
       let x = d3.touches(this);
-      console.log(d.class);
+      console.log(d);
+      console.log(x);
+      tooltip.style("top",d.x+"px").style("left",d.y+"px");
+      tooltip.text(d.name);
+      tooltip.style("visibility", "visible");
       mouseOut(d);
       mouseHover(d);
-      if(d.class == "link"){
+      if (d.class == "link") {
         handleMouseClick(d);
       }
       if (d.class == "tag") {

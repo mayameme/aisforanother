@@ -6,19 +6,6 @@ body{
     overflow: hidden;
 }
 
-div.tooltip {	
-    position: absolute;			
-    text-align: center;			
-    width: 60px;					
-    height: 28px;					
-    padding: 2px;				
-    font: 12px sans-serif;		
-    background: lightsteelblue;	
-    border: 0px;		
-    border-radius: 8px;			
-    pointer-events: none;			
-}
-
 button{
     background-color: #f8b800;
     border: none;
@@ -29,3 +16,70 @@ button{
 button:hover{
     background-color: white;
 }
+
+
+.d3-tip {
+    border: 1px solid #777777;
+    width: 200px;
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    color: #fff;
+    border-radius: 2px;
+  }
+  
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+  
+  /* Style northward tooltips differently */
+  .d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+  }
+  .up-arrow {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #f00;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgba(248, 184, 0, 1);
+    color: #000;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+}
+.up-arrow:before {
+    content: '';
+    display: block;  
+    position: absolute;
+    left: 0px;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-bottom-color: black;
+}
+
+.up-arrow:after {
+    content: '';
+    display: block;  
+    position: absolute;
+    left: 0px;
+    bottom: 100%;
+    width: 0;
+    height: 0;
+    border: 9px solid transparent;
+    border-bottom-color: white;
+}
+
+  
+  
