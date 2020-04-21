@@ -26,6 +26,7 @@ button:hover{
     padding: 12px;
     color: #fff;
     border-radius: 2px;
+    font-size: 20px;
   }
   
   /* Creates a small triangle extender for the tooltip */
