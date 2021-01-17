@@ -15,14 +15,16 @@ body, html{
 .container_left{grid-area: xleft;}
 .container_right{grid-area: xright;}
 .container_bottom{grid-area: xbot;}
+.tcontainer{grid-area: ticker;}
 .about {grid-area: xabout;}
 .container {
   margin: 0rem 1rem 1rem 0rem;
   height: 100%;
   display: grid;
-  grid-template-rows: 1fr 1fr 0.15fr;
+  grid-template-rows: 0.1fr 1fr 1fr 0.15fr;
   grid-template-columns: 25% auto;
   grid-template-areas:
+  "ticker ticker"
   "xleft xright"
   "xleft xbot"
   "xabout xabout";
