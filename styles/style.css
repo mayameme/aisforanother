@@ -172,7 +172,7 @@ body, html{
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   animation-name: ticker;
-  animation-duration: 10s;
+  animation-duration: 20s;
 }
 .ticker-move:hover{
   animation-play-state: paused; /* Pause scroll on mouse hover */
