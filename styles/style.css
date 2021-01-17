@@ -183,5 +183,6 @@ body, html{
   display: inline-block; /* Lay items in a horizontal line */
   padding: 0 2rem;
   height: 30px;
-  color: red;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 700;
 }
