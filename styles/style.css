@@ -180,4 +180,5 @@ body, html{
 .ticker-item{
   display: inline-block; /* Lay items in a horizontal line */
   padding: 0 2rem;
+  height: 30px;
 }
